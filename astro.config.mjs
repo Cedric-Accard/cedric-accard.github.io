@@ -9,12 +9,12 @@ import remarkMath from 'remark-math';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://shravangoswami.com',
+	site: 'https://cedricaccard.github.io',
 	base: process.env.BASE_PATH || '/astro-scholar',
 	integrations: [
 		mdx(),
 		sitemap()
-	],
+	],	
 	markdown: {
 		shikiConfig: {
 			themes: {
