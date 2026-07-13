@@ -9,7 +9,7 @@ import remarkMath from 'remark-math';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://cedricaccard.github.io',
+	site: 'https://cedric-accard.github.io',
 	base: process.env.BASE_PATH || '/',
 	integrations: [
 		mdx(),
