@@ -1,18 +1,18 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Friedrich Nietzsche';
-export const SITE_DESCRIPTION = 'The academic portfolio of Friedrich Nietzsche.';
+export const SITE_TITLE = 'Cédric Accard';
+export const SITE_DESCRIPTION = 'My academic portfolio.';
 
 export const CV_URL = 'https://shravangoswami.com/resume.pdf';
 
 export const CONTACT = {
-  organization: 'Shravan Goswami',
+  organization: 'Cédric Accard',
   addressLines: [
-    'Creator of Astro Scholar',
+    'Observatoire Astronomique de Strasbourg',
   ],
   emails: [
-    'contact@shravangoswami.com',
+    'cedric.accard@astro.unsitra.fr',
   ],
 };
 
@@ -25,22 +25,22 @@ export const SOCIAL_LINKS: ReadonlyArray<{
 }> = [
   {
     label: 'GitHub',
-    href: 'https://github.com/shravanngoswamii/astro-scholar',
+    href: 'https://github.com/Cedric-Accard/',
     icon: 'github',
   },
   {
     label: 'Email',
-    href: 'mailto:contact@shravangoswami.com',
+    href: 'mailto:cedric.accard@astro.unsitra.fr',
     icon: 'email',
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/shravangoswami/',
+    href: 'https://www.linkedin.com/in/cedricaccard6/',
     icon: 'linkedin',
   },
   {
     label: 'X',
-    href: 'https://x.com/shravangoswamii',
+    href: 'https://x.com/caccrd29',
     icon: 'twitter',
   },
 ];

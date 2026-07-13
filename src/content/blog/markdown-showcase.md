@@ -4,9 +4,7 @@ description: 'A reference post for the Academic Portfolio blog that demonstrates
 pubDate: '2026-04-05'
 updatedDate: 'Apr 07 2026'
 authors:
-  - shravan-goswami
-  - friedrich-nietzsche
-  - simone-de-beauvoir
+  - cedric-accard
 toc: true
 ---
 

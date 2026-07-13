@@ -3,7 +3,7 @@ title: 'Advanced Markdown Features'
 description: 'Exploring footnotes, tables, callouts, and more.'
 pubDate: '2026-04-01'
 authors:
-  - friedrich-nietzsche
+  - cedric-accard
 toc: true
 tags:
   - markdown

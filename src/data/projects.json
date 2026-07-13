@@ -5,7 +5,7 @@
     "description": "DU MARI project on using symbolic regression on Dark Matter profile of the NIHAO simulation. Then using the SAGE analytic solver to assess the analycity of the solution to retrieve derived quantities. Tried to implement theses checks within the training.",
     "year": 2026,
     "status": "Completed",
-    "authors": ["Cedric-Accard"],
+    "authors": ["cedric-accard"],
     "heroImage": "",
     "link": "https://github.com/Cedric-Accard/PhySO_DM_Sage"
   }
