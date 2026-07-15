@@ -78,8 +78,7 @@ const publications = parseBibTeX(bibFileRaw)
         const first = pub.authors[0];
         return first && first.last.toLowerCase() === 'accard';
     })
-    .sort((a, b) => (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0));
-    .slice(0, 3);
+    .sort((a, b) => (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0))s.slice(0, 3);
 
 const formatAuthor = (auth: Author) => {
     return auth.first ? `${auth.first} ${auth.last}` : auth.last;
