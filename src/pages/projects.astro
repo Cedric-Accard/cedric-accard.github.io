@@ -194,19 +194,26 @@ const projects = projectsData.sort((a, b) => b.year - a.year);
 							
 							<p class="project-description">{project.description}</p>
 							
-							{project.authors && project.authors.length > 0 && (
+							{(project.authors && project.authors.length > 0) ||
+								project.extraCollaborators ? (
 								<div class="project-meta">
 									<span class="meta-label">By:</span>
 									<span class="author-names">
-										{project.authors.map((authorId, i) => (
-											<span>
-												<AuthorLink nameOrSlug={authorId} />
-												{i < project.authors!.length - 1 ? ', ' : ''}
-											</span>
-										))}
+									{project.authors && project.authors.map((authorId, i) => (
+										<span>
+										<AuthorLink nameOrSlug={authorId} />
+										{i < project.authors!.length - 1 || project.extraCollaborators ? ', ' : ''}
+										</span>
+									))}
+									{project.extraCollaborators && project.extraCollaborators.map((name, i) => (
+										<span>
+										{name}
+										{i < project.extraCollaborators!.length - 1 ? ', ' : ''}
+										</span>
+									))}
 									</span>
 								</div>
-							)}
+							) : null}
 
 							{project.link && (
 								<a href={project.link} target="_blank" class="read-more">
