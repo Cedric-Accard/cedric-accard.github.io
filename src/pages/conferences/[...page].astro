@@ -2,35 +2,45 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
 import AuthorLink from '../../components/AuthorLink.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { url } from '../../utils/paths';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
+    const posts = (await getCollection('conferences')).sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    );
 
-	return tags.map((tag) => ({
-		params: { tag },
-		props: {
-			posts: posts
-				.filter((post) => post.data.tags?.includes(tag))
-				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
-		},
-	}));
+    const pageSize = 4;
+    const totalPages = Math.ceil(posts.length / pageSize);
+    const paths = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+        paths.push({
+            params: { page: i === 1 ? undefined : String(i) },
+            props: {
+                posts: posts.slice((i - 1) * pageSize, i * pageSize),
+                currentPage: i,
+                totalPages,
+                nextPage: i < totalPages ? i + 1 : null,
+                prevPage: i > 1 ? i - 1 : null,
+            },
+        });
+    }
+
+    return paths;
 }
 
-const { tag } = Astro.params;
-const { posts } = Astro.props;
+const { posts, currentPage, totalPages, nextPage, prevPage } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Posts tagged "${tag}" | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
         <style>
             .blog-list {
                 display: flex;
@@ -48,7 +58,7 @@ const { posts } = Astro.props;
             .blog-post-card:last-child {
                 border-bottom: none;
             }
-            
+
             .blog-thumb {
                 width: 280px;
                 flex-shrink: 0;
@@ -125,7 +135,7 @@ const { posts } = Astro.props;
             .read-more:hover {
                 border-bottom-color: var(--color-accent);
             }
-            
+
             @media (max-width: 720px) {
                 .blog-post-card {
                     flex-direction: column-reverse;
@@ -150,9 +160,9 @@ const { posts } = Astro.props;
 	<body>
 		<Header />
 		<main>
-			<h1>Posts tagged "{tag}"</h1>
+			<h1>Lab News & Updates</h1>
             <p style="margin-bottom: 2rem; max-width: 700px; color: var(--color-text-muted);">
-                <a href={url('/tags')} style="color: var(--color-accent); text-decoration: none;">&larr; Back to all tags</a>
+                Explore our latest research highlights, tutorials, and announcements.
             </p>
 
             <div class="blog-list">
@@ -161,12 +171,12 @@ const { posts } = Astro.props;
                         <article class="blog-post-card">
                             <div class="blog-content">
                                 <h2 class="blog-title">
-                                    <a href={url(`/blog/${post.id}/`)}>{post.data.title}</a>
+                                    <a href={url(`/conferences/${post.id}/`)}>{post.data.title}</a>
                                 </h2>
-                                
+
                                 <div class="blog-meta">
                                     <FormattedDate date={post.data.pubDate} />
-                                    
+
                                     {post.data.authors && post.data.authors.length > 0 && (
                                         <>
                                             <span class="meta-divider">&bull;</span>
@@ -182,8 +192,8 @@ const { posts } = Astro.props;
                                         <>
                                             <span class="meta-divider">&bull;</span>
                                             <span class="blog-tags" style="display: inline-flex; gap: 0.25rem;">
-                                                {post.data.tags.map((t) => (
-                                                    <a href={url(`/tags/${t}`)} style="text-decoration: none; color: var(--color-accent); font-weight: 600;">#{t}</a>
+                                                {post.data.tags.map((tag) => (
+                                                    <a href={url(`/tags/${tag}`)} style="text-decoration: none; color: var(--color-accent); font-weight: 600;">#{tag}</a>
                                                 ))}
                                             </span>
                                         </>
@@ -193,21 +203,47 @@ const { posts } = Astro.props;
                                 <p class="blog-desc">
                                     {post.data.description}
                                 </p>
-                                
-                                <a href={url(`/blog/${post.id}/`)} class="read-more">Read Article &rarr;</a>
+
+                                <a href={url(`/conferences/${post.id}/`)} class="read-more">Read Article &rarr;</a>
                             </div>
 
-                            <a href={url(`/blog/${post.id}/`)} class="blog-thumb">
+                            <a href={url(`/conferences/${post.id}/`)} class="blog-thumb">
                                 {post.data.heroImage ? (
                                     <Image width={560} height={315} src={post.data.heroImage} alt={post.data.title} />
                                 ) : (
-                                    <img src={url(`/blog/${post.id}.png`)} alt={post.data.title} />
+                                    <img src={url(`/conferences/${post.id}.png`)} alt={post.data.title} />
                                 )}
                             </a>
                         </article>
                     ))
                 }
+
+                {posts.length === 0 && (
+                    <p style="text-align: center; color: var(--color-text-muted);">
+                        No blog posts found.
+                    </p>
+                )}
             </div>
+
+            {totalPages > 1 && (
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 3rem;">
+                    {prevPage ? (
+                        <a href={url(prevPage === 1 ? '/conferences' : `/conferences/${prevPage}`)} style="padding: 0.5rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; text-decoration: none; color: var(--color-text-main); font-weight: 500;">&larr; Previous</a>
+                    ) : (
+                        <span style="padding: 0.5rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-text-muted); opacity: 0.5; cursor: not-allowed; font-weight: 500;">&larr; Previous</span>
+                    )}
+
+                    <span style="display: flex; align-items: center; font-weight: 600; color: var(--color-text-muted);">
+                        Page {currentPage} of {totalPages}
+                    </span>
+
+                    {nextPage ? (
+                        <a href={url(`/conferences/${nextPage}`)} style="padding: 0.5rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; text-decoration: none; color: var(--color-text-main); font-weight: 500;">Next &rarr;</a>
+                    ) : (
+                        <span style="padding: 0.5rem 1rem; border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-text-muted); opacity: 0.5; cursor: not-allowed; font-weight: 500;">Next &rarr;</span>
+                    )}
+                </div>
+            )}
 		</main>
 		<Footer />
 	</body>

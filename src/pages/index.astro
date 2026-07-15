@@ -8,8 +8,10 @@ import { getCollection } from 'astro:content';
 import bibFileRaw from '../data/publications.bib?raw';
 import { url } from '../utils/paths';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+import { getCollection } from 'astro:content';
+
+const conferences = (await getCollection('conferences')).sort(
+    (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
 ).slice(0, 3);
 
 interface Author {
@@ -65,9 +67,19 @@ function parseBibTeX(input: string): BibEntry[] {
     return entries;
 }
 
+/*
 const publications = parseBibTeX(bibFileRaw).sort((a, b) => {
     return (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0);
 }).slice(0, 3);
+*/
+
+const publications = parseBibTeX(bibFileRaw)
+    .filter(pub => {
+        const first = pub.authors[0];
+        return first && first.last.toLowerCase() === 'accard';
+    })
+    .sort((a, b) => (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0));
+    .slice(0, 3);
 
 const formatAuthor = (auth: Author) => {
     return auth.first ? `${auth.first} ${auth.last}` : auth.last;
@@ -127,14 +139,16 @@ const formatAuthor = (auth: Author) => {
 		<main>
 			<section class="hero">
 				<div class="hero-content">
-					<h1 style="margin-bottom: 0.5rem; font-size: 3rem;">Cédric Accard</h1>
+					<h1 style="margin-bottom: 0.5rem; font-size: 3rem;">Cedric Accard</h1>
 					<h2 style="font-weight: 400; color: var(--color-text-muted); margin-bottom: 1.5rem; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.05em; font-size: 1rem; border-bottom: none; padding-bottom: 0; display: block; margin-top: 0;">
 						3rd year PhD Student in Astrophysics<br/>
 					</h2>
-					<p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">
-						Welcome to my academic portfolio. My research focuses on the <strong>Evolution of Galaxies, Star Formation and its link to gas content of galaxies.</strong>.
-					</p>
-					<div class="hero-buttons">
+					<div style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">
+				        <p> I am a 3rd year PhD student in Astrophysics at the <strong>Observatoire Astronomique de Strasbourg</strong> (University of Strasbourg, France), under the supervision of <strong>Florent Renaud</strong>. I hold a Master's degree in Astrophysics and Data Science from Universite de Strasbourg </p>
+                        <p> My research focuses on the <strong>evolution of galaxies and star formation across cosmic time</strong>, with a particular emphasis on the <strong>first two billion years of the Universe</strong>.  I study the relations between star formation activity and the physical properties of high-redshift galaxies, combining observational data with state-of-the-art cosmological simulations. I also use codes to model the spectral energy distributions of galaxies wether they are observed, using the SED fitting code <strong>CIGALE</strong>, or simulated using the radiative transfer code <strong>SKIRT</strong>.</p>
+                        <p> Outside of research, you will likely find me at the cinema, deep into a music listening moment, or riding my bike somewhere in the mountains. </p>
+					</div>
+                    <div class="hero-buttons">
 						<a href={url('/publications')} class="btn">View Publications</a>
 						<a href={url('/projects')} class="btn btn-outline">Current Projects</a>
 					</div>
@@ -170,24 +184,23 @@ const formatAuthor = (auth: Author) => {
                 </section>
 
                 <section>
-                    <h2 style="margin-top: 0;">Lab News</h2>
+                    <h2 style="margin-top: 0;">Latest Conferences & Talks</h2>
                     <ul style="list-style: none; padding: 0;">
-                        {posts.map((post) => (
+                        {conferences.map((conf) => (
                             <li style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border);">
-                                <a href={url(`/blog/${post.id}/`)} style="display: block; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 0.25rem;">
-                                    {post.data.title}
-                                </a>
-                                <small style="color: var(--color-text-muted); text-transform: uppercase; font-size: 0.8rem;">
-                                    {post.data.pubDate.toLocaleDateString('en-us', {
-                                        year: 'numeric',
-                                        month: 'short',
-                                        day: 'numeric',
-                                    })}
+                                <span style="display: block; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 0.25rem;">
+                                    {conf.data.title}
+                                </span>
+                                <small style="color: var(--color-text-muted); font-size: 0.85rem;">
+                                    <em>{conf.data.event}</em> — {conf.data.location}<br/>
+                                    <span style="text-transform: uppercase; font-size: 0.8rem;">{conf.data.type} · {conf.data.date}</span>
                                 </small>
                             </li>
                         ))}
                     </ul>
-                    <a href={url('/blog')} style="font-weight: 600;">View Blog &rarr;</a>
+                    <div style="margin-top: 1.5rem;">
+                        <a href={url('/conferences')} style="font-weight: 600;">View All &rarr;</a>
+                    </div>
                 </section>
             </div>
 		</main>

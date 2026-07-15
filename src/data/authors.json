@@ -1,8 +1,8 @@
 [
   {
     "id": "cedric-accard",
-    "name": "Cédric Accard",
-    "title": "PhD Student in Astrophysics at Observatoire Astronomique de Strasbourg",
+    "name": "Cedric Accard",
+    "title": "PhD Student",
     "role": "",
     "bio": "",
     "avatar": "Cedric-Accard/cedricaccard.github.io/public/CA.jpg",
@@ -18,7 +18,7 @@
     "id": "florent-renaud",
     "name": "Florent Renaud",
     "title": "",
-    "role": "PhD Advisor",
+    "role": "Research professor",
     "bio": "",
     "avatar": "",
     "email": "",

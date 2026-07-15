@@ -1,13 +1,13 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Cédric Accard';
+export const SITE_TITLE = 'Cedric Accard';
 export const SITE_DESCRIPTION = 'My academic portfolio.';
 
-export const CV_URL = 'https://shravangoswami.com/resume.pdf';
+export const CV_URL = 'https://cedric-accard.github.io.com/CV_academia.pdf';
 
 export const CONTACT = {
-  organization: 'Cédric Accard',
+  organization: 'Cedric Accard',
   addressLines: [
     'Observatoire Astronomique de Strasbourg',
   ],
