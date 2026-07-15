@@ -16,7 +16,7 @@ export const CONTACT = {
   ],
 };
 
-export type SocialIcon = 'website' | 'scholar' | 'email' | 'github' | 'linkedin' | 'twitter';
+export type SocialIcon = 'website' | 'scholar' | 'email' | 'github' | 'linkedin' | 'twitter' | 'orcid';
 
 export const SOCIAL_LINKS: ReadonlyArray<{
   label: string;

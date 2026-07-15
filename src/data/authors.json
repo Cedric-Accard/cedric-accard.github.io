@@ -5,15 +5,16 @@
     "title": "PhD Student",
     "role": "PhD Student",
     "bio": "",
-    "avatar": "Cedric-Accard/cedricaccard.github.io/public/CA.jpg",
+    "avatar": "https://cedricaccard.github.io/CA.jpg",
     "website": "https://cedricaccard.github.io/",
+    "orcid": "https://orcid.org/0009-0005-9982-7239",
     "github": "https://github.com/Cedric-Accard",
     "linkedin": "https://www.linkedin.com/in/cedricaccard6/",
     "google_scholar": "https://scholar.google.com/citations?hl=en&user=MlqG2TMAAAAJ",
     "email": "cedric.accard@astro.unistra.fr",
     "sortOrder": 0,
     "alumni": false,
-    "isTeam": false
+    "isTeam": true
   },
   {
   "id": "florent-renaud",
@@ -27,7 +28,7 @@
   "google_scholar": "",
   "sortOrder": 1,
   "alumni": false,
-  "isTeam": false
+  "isTeam": true
 },
 {
   "id": "matthieu-bethermin",
@@ -41,7 +42,7 @@
   "google_scholar": "",
   "sortOrder": 2,
   "alumni": false,
-  "isTeam": false
+  "isTeam": true
 },
 {
   "id": "katarina-kraljic",
@@ -55,7 +56,7 @@
   "google_scholar": "",
   "sortOrder": 3,
   "alumni": false,
-  "isTeam": false
+  "isTeam": true
 },
 {
   "id": "diana-ismail",
@@ -69,6 +70,6 @@
   "google_scholar": "",
   "sortOrder": 4,
   "alumni": false,
-  "isTeam": false
+  "isTeam": true
 }
 ]

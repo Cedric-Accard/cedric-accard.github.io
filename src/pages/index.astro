@@ -73,7 +73,10 @@ const publications = parseBibTeX(bibFileRaw).sort((a, b) => {
 
 
 const formatAuthor = (auth: Author) => {
-    return auth.first ? `${auth.first} ${auth.last}` : auth.last;
+    const clean = (s: string) => s.replace(/[{}]/g, '').trim();
+    return auth.first
+        ? `${clean(auth.first)} ${clean(auth.last)}`
+        : clean(auth.last);
 };
 ---
 
