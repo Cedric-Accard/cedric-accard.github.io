@@ -2,6 +2,7 @@
 title: ""
 event: "COSMOS Conference"
 location: "Marseille, France"
-date: "May 2025"
+pubDate: "2025-03-19"
 type: "Contributed Talk"
+slug: "cosmos-marseille-2025"
 ---
