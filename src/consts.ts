@@ -4,7 +4,7 @@
 export const SITE_TITLE = 'Cedric Accard';
 export const SITE_DESCRIPTION = 'My academic portfolio.';
 
-export const CV_URL = 'https://cedric-accard.github.io.com/CV_academia.pdf';
+export const CV_URL = 'https://cedric-accard.github.io/public/CV_academia.pdf';
 
 export const CONTACT = {
   organization: 'Cedric Accard',

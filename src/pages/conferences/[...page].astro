@@ -160,9 +160,9 @@ const { posts, currentPage, totalPages, nextPage, prevPage } = Astro.props;
 	<body>
 		<Header />
 		<main>
-			<h1>Lab News & Updates</h1>
+			<h1>Conferences, Talks & Posters</h1>
             <p style="margin-bottom: 2rem; max-width: 700px; color: var(--color-text-muted);">
-                Explore our latest research highlights, tutorials, and announcements.
+                See where I've been traveling <strong>for work</strong>.
             </p>
 
             <div class="blog-list">
@@ -204,7 +204,7 @@ const { posts, currentPage, totalPages, nextPage, prevPage } = Astro.props;
                                     {post.data.description}
                                 </p>
 
-                                <a href={url(`/conferences/${post.id}/`)} class="read-more">Read Article &rarr;</a>
+                                <a href={url(`/conferences/${post.id}/`)} class="read-more">Read More &rarr;</a>
                             </div>
 
                             <a href={url(`/conferences/${post.id}/`)} class="blog-thumb">
