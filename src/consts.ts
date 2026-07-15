@@ -24,14 +24,19 @@ export const SOCIAL_LINKS: ReadonlyArray<{
   icon: SocialIcon;
 }> = [
   {
-    label: 'GitHub',
-    href: 'https://github.com/Cedric-Accard/',
-    icon: 'github',
+    label: 'ORCID',
+    href: 'https://orcid.org/0009-0005-9982-7239',
+    icon: 'orcid',
   },
   {
     label: 'Email',
     href: 'mailto:cedric.accard@astro.unsitra.fr',
     icon: 'email',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/Cedric-Accard/',
+    icon: 'github',
   },
   {
     label: 'LinkedIn',
@@ -42,11 +47,6 @@ export const SOCIAL_LINKS: ReadonlyArray<{
     label: 'X',
     href: 'https://x.com/caccrd29',
     icon: 'twitter',
-  },
-  {
-    label: 'ORCID',
-    href: 'https://orcid.org/0009-0005-9982-7239',
-    icon: 'orcid',
   },
 ];
 
