@@ -74,11 +74,12 @@ const publications = parseBibTeX(bibFileRaw).sort((a, b) => {
 */
 
 const publications = parseBibTeX(bibFileRaw)
-    .filter(pub => {
-        const first = pub.authors[0];
-        return first && first.last.toLowerCase() === 'accard';
-    })
-    .sort((a, b) => (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0)).slice(0, 3);
+  .filter(pub => {
+    const first = pub.authors[0];
+    return first && first.last.toLowerCase() === 'accard';
+  })
+  .sort((a, b) => (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0))
+  .slice(0, 3);
 
 const formatAuthor = (auth: Author) => {
     return auth.first ? `${auth.first} ${auth.last}` : auth.last;
@@ -111,6 +112,13 @@ const formatAuthor = (auth: Author) => {
 				border: 6px solid var(--color-bg);
 				box-shadow: 0 0 0 1px var(--color-border), var(--shadow-lg);
 			}
+            .hero-contact {
+                font-size: 0.9rem;
+            }
+
+            .hero-social-links a:hover {
+                color: var(--color-accent);
+            }
             
             .pub-mini-item {
                 margin-bottom: 1.5rem;
@@ -143,18 +151,56 @@ const formatAuthor = (auth: Author) => {
 						3rd year PhD Student in Astrophysics<br/>
 					</h2>
 					<div style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">
-				        <p> I am a 3rd year PhD student in Astrophysics at the <strong>Observatoire Astronomique de Strasbourg</strong> (University of Strasbourg, France), under the supervision of <strong>Florent Renaud</strong>. I hold a Master's degree in Astrophysics and Data Science from Universite de Strasbourg </p>
+				        <p> I am a 3rd year PhD student in Astrophysics at the <strong>Observatoire Astronomique de Strasbourg</strong> (University of Strasbourg, France), under the supervision of <strong>Florent Renaud</strong>. I hold a Master's degree in Astrophysics and Data Science from Universite de Strasbourg.</p>
                         <p> My research focuses on the <strong>evolution of galaxies and star formation across cosmic time</strong>, with a particular emphasis on the <strong>first two billion years of the Universe</strong>.  I study the relations between star formation activity and the physical properties of high-redshift galaxies, combining observational data with state-of-the-art cosmological simulations. I also use codes to model the spectral energy distributions of galaxies wether they are observed, using the SED fitting code <strong>CIGALE</strong>, or simulated using the radiative transfer code <strong>SKIRT</strong>.</p>
                         <p> Outside of research, you will likely find me at the cinema, deep into a music listening moment, or riding my bike somewhere in the mountains. </p>
 					</div>
-                    <div class="hero-buttons">
+                    <!--<div class="hero-buttons">
 						<a href={url('/publications')} class="btn">View Publications</a>
 						<a href={url('/projects')} class="btn btn-outline">Current Projects</a>
-					</div>
+					</div>-->
 				</div>
 				<div class="hero-image">
-					<Image src={url('/CA.jpg')} width={280} height={280} alt="Professor Portrait" fetchpriority="high" decoding="async" />
-				</div>
+                    <Image src={url('/CA.jpg')} width={280} height={280} alt="Cédric Accard" fetchpriority="high" decoding="async" />
+
+                    <div class="hero-contact" style="margin-top: 1.5rem;">
+                        <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">
+                        Contact
+                        </h3>
+                        <address style="font-style: normal; font-size: 0.9rem; line-height: 1.6; color: var(--color-text-muted);">
+                        {CONTACT.organization}<br/>
+                        {CONTACT.addressLines.map((line) => (
+                            <>
+                            {line}<br/>
+                            </>
+                        ))}
+                        </address>
+                        <p style="margin-top: 0.75rem; font-size: 0.9rem;">
+                        {CONTACT.emails.map((email) => (
+                            <>
+                            <a href={`mailto:${email}`} style="text-decoration: underline;">{email}</a><br/>
+                            </>
+                        ))}
+                        </p>
+
+                        <h3 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 1.25rem 0 0.75rem;">
+                        Connect
+                        </h3>
+                        <div class="hero-social-links" style="display: flex; gap: 0.75rem;">
+                        {SOCIAL_LINKS.map((link) => (
+                            <a
+                            href={link.href}
+                            target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+                            rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                            aria-label={link.label}
+                            style="color: var(--color-text-muted);"
+                            >
+                            {/* reuse the same SVG icon logic from the footer */}
+                            </a>
+                        ))}
+                        </div>
+                    </div>
+                </div>
 			</section>
 
 			<hr style="margin: 3rem 0; border-top: 1px solid var(--color-border);" />
