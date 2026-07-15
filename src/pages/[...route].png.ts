@@ -5,7 +5,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import projectsData from "../data/projects.json";
 
 export async function getStaticPaths() {
-    const posts = await getCollection('blog');
+    const posts = await getCollection('conferences');
 
     // Base static pages
     const staticPages = [
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
         { params: { route: 'projects' }, props: { title: 'Projects', subtitle: SITE_TITLE } },
         { params: { route: 'publications' }, props: { title: 'Publications', subtitle: SITE_TITLE } },
         { params: { route: 'team' }, props: { title: 'Team', subtitle: SITE_TITLE } },
-        { params: { route: 'blog' }, props: { title: 'Blog', subtitle: SITE_TITLE } },
+        { params: { route: 'conferences' }, props: { title: 'Conferences', subtitle: SITE_TITLE } },
     ];
 
     // Dynamic blog posts

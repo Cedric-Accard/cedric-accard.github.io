@@ -9,10 +9,10 @@ import Header from '../components/Header.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import { url } from '../utils/paths';
 
-type Props = CollectionEntry<'blog'>['data'] & { id?: string, headings?: { depth: number; slug: string; text: string }[], toc?: boolean };
+type Props = CollectionEntry<'conferences'>['data'] & { id?: string, headings?: { depth: number; slug: string; text: string }[], toc?: boolean };
 
 const { title, description, pubDate, updatedDate, heroImage, authors, tags, id, headings = [], toc } = Astro.props;
-const fallbackHero = id ? url(`/blog/${id}.png`) : url('/og.png');
+const fallbackHero = id ? url(`/conferences/${id}.png`) : url('/og.png');
 ---
 
 <html lang="en">
