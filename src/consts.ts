@@ -43,6 +43,11 @@ export const SOCIAL_LINKS: ReadonlyArray<{
     href: 'https://x.com/caccrd29',
     icon: 'twitter',
   },
+  {
+    label: 'ORCID',
+    href: 'https://orcid.org/0009-0005-9982-7239',
+    icon: 'orcid',
+  },
 ];
 
 export const FOOTER_CREDIT = {

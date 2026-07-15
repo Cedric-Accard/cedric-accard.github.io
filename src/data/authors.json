@@ -13,7 +13,7 @@
     "email": "cedric.accard@astro.unistra.fr",
     "sortOrder": 0,
     "alumni": false,
-    "isTeam": true
+    "isTeam": false
   },
   {
   "id": "florent-renaud",
@@ -32,7 +32,7 @@
 {
   "id": "matthieu-bethermin",
   "name": "Matthieu Béthermin",
-  "title": "",
+  "title": "Assistant astronomer",
   "role": "Former M2 internship director",
   "bio": "",
   "avatar": "",
@@ -46,7 +46,7 @@
 {
   "id": "katarina-kraljic",
   "name": "Katarina Kraljic",
-  "title": "",
+  "title": "Staff researcher",
   "role": "Observatory collaborator",
   "bio": "",
   "avatar": "",
@@ -60,7 +60,7 @@
 {
   "id": "diana-ismail",
   "name": "Diana Ismail",
-  "title": "",
+  "title": "Postdoctoral researcher",
   "role": "Observatory collaborator",
   "bio": "",
   "avatar": "",
